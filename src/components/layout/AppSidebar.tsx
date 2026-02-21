@@ -1,6 +1,7 @@
 import { LayoutDashboard, BookOpen, Users, Settings, LogOut, GraduationCap, BarChart3, Bell } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const mainNav = [
   { title: "Tableau de bord", url: "/", icon: LayoutDashboard },
@@ -21,6 +22,13 @@ interface AppSidebarProps {
 
 export function AppSidebar({ collapsed }: AppSidebarProps) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <aside
@@ -76,7 +84,7 @@ export function AppSidebar({ collapsed }: AppSidebarProps) {
             {!collapsed && <span>{item.title}</span>}
           </NavLink>
         ))}
-        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent hover:text-destructive transition-all">
+        <button onClick={handleLogout} className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent hover:text-destructive transition-all">
           <LogOut className="h-5 w-5 shrink-0" />
           {!collapsed && <span>Déconnexion</span>}
         </button>
