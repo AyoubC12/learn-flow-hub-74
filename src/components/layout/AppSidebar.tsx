@@ -1,7 +1,6 @@
 import { LayoutDashboard, BookOpen, Users, Settings, LogOut, GraduationCap, BarChart3, Bell } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
+import { useLocation } from "react-router-dom";
 
 const mainNav = [
   { title: "Tableau de bord", url: "/", icon: LayoutDashboard },
@@ -22,13 +21,6 @@ interface AppSidebarProps {
 
 export function AppSidebar({ collapsed }: AppSidebarProps) {
   const location = useLocation();
-  const navigate = useNavigate();
-  const { logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
 
   return (
     <aside
@@ -36,6 +28,7 @@ export function AppSidebar({ collapsed }: AppSidebarProps) {
         collapsed ? "w-[68px]" : "w-[260px]"
       }`}
     >
+      {/* Logo */}
       <div className="flex h-16 items-center gap-3 border-b border-sidebar-border px-4">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground font-bold text-sm">
           <GraduationCap className="h-5 w-5" />
@@ -47,6 +40,7 @@ export function AppSidebar({ collapsed }: AppSidebarProps) {
         )}
       </div>
 
+      {/* Navigation */}
       <nav className="flex-1 space-y-1 px-3 py-4">
         {mainNav.map((item) => {
           const isActive = location.pathname === item.url;
@@ -69,6 +63,7 @@ export function AppSidebar({ collapsed }: AppSidebarProps) {
         })}
       </nav>
 
+      {/* Bottom */}
       <div className="border-t border-sidebar-border px-3 py-4 space-y-1">
         {bottomNav.map((item) => (
           <NavLink
@@ -81,10 +76,7 @@ export function AppSidebar({ collapsed }: AppSidebarProps) {
             {!collapsed && <span>{item.title}</span>}
           </NavLink>
         ))}
-        <button
-          onClick={handleLogout}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent hover:text-destructive transition-all"
-        >
+        <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent hover:text-destructive transition-all">
           <LogOut className="h-5 w-5 shrink-0" />
           {!collapsed && <span>Déconnexion</span>}
         </button>
