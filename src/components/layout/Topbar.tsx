@@ -1,11 +1,27 @@
-import { Bell, Search, Menu, User } from "lucide-react";
+import { Bell, Search, Menu } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface TopbarProps {
   onToggleSidebar: () => void;
   title: string;
+}
+
+function UserMenu() {
+  const { user, logout } = useAuth();
+  return (
+    <div className="flex items-center gap-2 rounded-full bg-secondary px-2 py-1.5 cursor-pointer" onClick={logout} title="Cliquez pour vous déconnecter">
+      <Avatar className="h-8 w-8">
+        <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+          {user?.avatar || "?"}
+        </AvatarFallback>
+      </Avatar>
+      <span className="hidden text-sm font-medium text-foreground md:block pr-1">{user?.name || "Utilisateur"}</span>
+    </div>
+  );
 }
 
 export function Topbar({ onToggleSidebar, title }: TopbarProps) {
@@ -32,19 +48,14 @@ export function Topbar({ onToggleSidebar, title }: TopbarProps) {
           />
         </div>
 
+        <ThemeToggle />
+
         <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
           <Bell className="h-5 w-5" />
           <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-accent" />
         </Button>
 
-        <div className="flex items-center gap-2 rounded-full bg-secondary px-2 py-1.5">
-          <Avatar className="h-8 w-8">
-            <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
-              AD
-            </AvatarFallback>
-          </Avatar>
-          <span className="hidden text-sm font-medium text-foreground md:block pr-1">Admin</span>
-        </div>
+        <UserMenu />
       </div>
     </header>
   );
