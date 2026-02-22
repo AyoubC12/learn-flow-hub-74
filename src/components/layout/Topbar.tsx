@@ -36,7 +36,7 @@ export function Topbar({ onToggleSidebar, title }: TopbarProps) {
         >
           <Menu className="h-5 w-5" />
         </Button>
-        <h1 className="text-xl font-semibold text-foreground">{title}</h1>
+        <h1 className="text-xl font-semibold text-foreground font-display">{title}</h1>
       </div>
 
       <div className="flex items-center gap-3">

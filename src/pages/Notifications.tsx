@@ -1,20 +1,20 @@
-import { Bell, BookOpen, Users, AlertCircle, CheckCircle } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { UtensilsCrossed, Users, AlertCircle, CheckCircle, CalendarDays } from "lucide-react";
 
 const notifications = [
-  { id: 1, type: "course", icon: BookOpen, title: "Nouveau cours publié", desc: "\"React Avancé\" a été publié par Marie Dupont", time: "Il y a 2h", read: false },
-  { id: 2, type: "user", icon: Users, title: "Nouvel utilisateur inscrit", desc: "Gabrielle Simon a rejoint la plateforme", time: "Il y a 4h", read: false },
-  { id: 3, type: "alert", icon: AlertCircle, title: "Erreur de paiement", desc: "Le paiement de David Roux a échoué", time: "Il y a 6h", read: false },
-  { id: 4, type: "success", icon: CheckCircle, title: "Cours complété", desc: "Clara Petit a terminé \"UI/UX Design Fondamentaux\"", time: "Il y a 1j", read: true },
-  { id: 5, type: "user", icon: Users, title: "Nouvel utilisateur inscrit", desc: "Hugo Faure a rejoint la plateforme", time: "Il y a 2j", read: true },
-  { id: 6, type: "course", icon: BookOpen, title: "Cours mis à jour", desc: "\"Python pour la Data Science\" a été mis à jour", time: "Il y a 3j", read: true },
+  { id: 1, type: "reservation", icon: CalendarDays, title: "Nouvelle réservation", desc: "Alice Moreau — 4 personnes le 22/02 à 19h30", time: "Il y a 2h", read: false },
+  { id: 2, type: "order", icon: UtensilsCrossed, title: "Nouvelle commande", desc: "Table N°3 — Tartare de Saumon, Risotto aux Cèpes", time: "Il y a 4h", read: false },
+  { id: 3, type: "alert", icon: AlertCircle, title: "Stock faible", desc: "Le stock de homard est bientôt épuisé", time: "Il y a 6h", read: false },
+  { id: 4, type: "success", icon: CheckCircle, title: "Commande servie", desc: "Table N°5 — Filet de Bœuf Rossini servi avec succès", time: "Il y a 1j", read: true },
+  { id: 5, type: "user", icon: Users, title: "Nouvel utilisateur", desc: "Hugo Faure s'est inscrit sur la plateforme", time: "Il y a 2j", read: true },
+  { id: 6, type: "order", icon: UtensilsCrossed, title: "Menu mis à jour", desc: "Le plat 'Homard Thermidor' est passé en saisonnier", time: "Il y a 3j", read: true },
 ];
 
 const typeStyles: Record<string, string> = {
-  course: "bg-info/10 text-info",
-  user: "bg-primary/10 text-primary",
+  reservation: "bg-info/10 text-info",
+  order: "bg-accent/10 text-accent",
   alert: "bg-destructive/10 text-destructive",
   success: "bg-success/10 text-success",
+  user: "bg-primary/10 text-primary",
 };
 
 export default function Notifications() {

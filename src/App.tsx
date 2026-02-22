@@ -14,6 +14,8 @@ import Notifications from "@/pages/Notifications";
 import Settings from "@/pages/Settings";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
+import Reservations from "@/pages/Reservations";
+import Orders from "@/pages/Orders";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,8 +35,10 @@ function AppRoutes() {
       <Route path="/signup" element={user ? <Navigate to="/" replace /> : <Signup />} />
       <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/courses/:id" element={<CourseDetail />} />
+        <Route path="/menu" element={<Courses />} />
+        <Route path="/menu/:id" element={<CourseDetail />} />
+        <Route path="/reservations" element={<Reservations />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/notifications" element={<Notifications />} />

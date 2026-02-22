@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { GraduationCap, User, Mail, Lock, Eye, EyeOff, ShieldCheck } from "lucide-react";
+import { ChefHat, User, Mail, Lock, Eye, EyeOff, ShieldCheck } from "lucide-react";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -40,77 +40,95 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4">
-      <div className="w-full max-w-md space-y-8 animate-fade-in">
-        <div className="flex flex-col items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl gradient-accent shadow-elevated">
-            <GraduationCap className="h-7 w-7 text-accent-foreground" />
-          </div>
-          <h1 className="text-2xl font-bold text-foreground">Créer un compte</h1>
-          <p className="text-sm text-muted-foreground">Rejoignez EduPro et commencez à apprendre</p>
+    <div className="flex min-h-screen">
+      {/* Left panel */}
+      <div className="hidden lg:flex lg:w-1/2 gradient-primary items-center justify-center p-12 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-32 h-32 rounded-full border-2 border-primary-foreground/30" />
+          <div className="absolute bottom-32 right-20 w-48 h-48 rounded-full border-2 border-primary-foreground/20" />
         </div>
+        <div className="text-center text-primary-foreground relative z-10 space-y-6">
+          <ChefHat className="h-20 w-20 mx-auto opacity-90" />
+          <h2 className="text-4xl font-bold font-display">RestoManager</h2>
+          <p className="text-lg opacity-80 max-w-sm">Rejoignez notre plateforme et gérez votre établissement en toute simplicité.</p>
+        </div>
+      </div>
 
-        <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-8 shadow-elevated space-y-5">
-          {error && (
-            <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">{error}</div>
-          )}
-
-          <div className="space-y-2">
-            <Label htmlFor="name">Nom complet</Label>
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input id="name" placeholder="Jean Dupont" value={name} onChange={(e) => setName(e.target.value)} className="pl-9" />
+      {/* Right panel */}
+      <div className="flex flex-1 items-center justify-center bg-background p-6">
+        <div className="w-full max-w-md space-y-8 animate-fade-in">
+          <div className="flex flex-col items-center gap-3 lg:hidden">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl gradient-accent shadow-elevated">
+              <ChefHat className="h-7 w-7 text-accent-foreground" />
             </div>
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input id="email" type="email" placeholder="vous@exemple.com" value={email} onChange={(e) => setEmail(e.target.value)} className="pl-9" />
-            </div>
+          <div className="text-center lg:text-left">
+            <h1 className="text-2xl font-bold text-foreground font-display">Créer un compte</h1>
+            <p className="text-sm text-muted-foreground mt-1">Rejoignez RestoManager</p>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="password">Mot de passe</Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} className="pl-9 pr-10" />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
-                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-              </button>
-            </div>
-          </div>
+          <form onSubmit={handleSubmit} className="rounded-2xl border border-border bg-card p-8 shadow-elevated space-y-5">
+            {error && (
+              <div className="rounded-lg bg-destructive/10 p-3 text-sm text-destructive">{error}</div>
+            )}
 
-          <div className="space-y-2">
-            <Label htmlFor="confirmPassword">Confirmer le mot de passe</Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input id="confirmPassword" type={showPassword ? "text" : "password"} placeholder="••••••••" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="pl-9" />
-            </div>
-          </div>
-
-          {/* Admin toggle */}
-          <div className="flex items-center justify-between rounded-lg border border-border bg-secondary/50 p-4">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="h-5 w-5 text-accent" />
-              <div>
-                <p className="text-sm font-medium text-foreground">S'inscrire comme Admin</p>
-                <p className="text-xs text-muted-foreground">Accès au tableau de bord d'administration</p>
+            <div className="space-y-2">
+              <Label htmlFor="name">Nom complet</Label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input id="name" placeholder="Jean Dupont" value={name} onChange={(e) => setName(e.target.value)} className="pl-9" />
               </div>
             </div>
-            <Switch checked={isAdmin} onCheckedChange={setIsAdmin} />
-          </div>
 
-          <Button type="submit" className="w-full gradient-accent text-accent-foreground font-semibold shadow-elevated">
-            Créer mon compte
-          </Button>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input id="email" type="email" placeholder="vous@restaurant.com" value={email} onChange={(e) => setEmail(e.target.value)} className="pl-9" />
+              </div>
+            </div>
 
-          <p className="text-center text-sm text-muted-foreground">
-            Déjà un compte ?{" "}
-            <Link to="/login" className="font-medium text-accent hover:underline">Se connecter</Link>
-          </p>
-        </form>
+            <div className="space-y-2">
+              <Label htmlFor="password">Mot de passe</Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} className="pl-9 pr-10" />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="confirmPassword">Confirmer le mot de passe</Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input id="confirmPassword" type={showPassword ? "text" : "password"} placeholder="••••••••" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="pl-9" />
+              </div>
+            </div>
+
+            {/* Admin toggle */}
+            <div className="flex items-center justify-between rounded-lg border border-border bg-secondary/50 p-4">
+              <div className="flex items-center gap-3">
+                <ShieldCheck className="h-5 w-5 text-accent" />
+                <div>
+                  <p className="text-sm font-medium text-foreground">S'inscrire comme Admin</p>
+                  <p className="text-xs text-muted-foreground">Accès complet à la gestion</p>
+                </div>
+              </div>
+              <Switch checked={isAdmin} onCheckedChange={setIsAdmin} />
+            </div>
+
+            <Button type="submit" className="w-full gradient-accent text-accent-foreground font-semibold shadow-elevated">
+              Créer mon compte
+            </Button>
+
+            <p className="text-center text-sm text-muted-foreground">
+              Déjà un compte ?{" "}
+              <Link to="/login" className="font-medium text-accent hover:underline">Se connecter</Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );
