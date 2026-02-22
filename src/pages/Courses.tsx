@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { courses } from "@/data/mockData";
 import { Search, Filter, Plus, Star, Users, Clock, BookOpen } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -60,7 +61,8 @@ export default function Courses() {
       {/* Grid */}
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filtered.map((course, i) => (
-          <div
+          <Link
+            to={`/courses/${course.id}`}
             key={course.id}
             className="group rounded-xl bg-card border border-border/50 shadow-card hover:shadow-elevated transition-all duration-300 overflow-hidden animate-fade-in"
             style={{ animationDelay: `${i * 60}ms` }}
@@ -105,7 +107,7 @@ export default function Courses() {
                 <span className="text-xs text-muted-foreground">{course.lessons} leçons</span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
