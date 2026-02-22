@@ -1,10 +1,12 @@
-import { LayoutDashboard, BookOpen, Users, Settings, LogOut, GraduationCap, BarChart3, Bell } from "lucide-react";
+import { LayoutDashboard, UtensilsCrossed, Users, Settings, LogOut, ChefHat, BarChart3, Bell, CalendarDays, ClipboardList } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 
 const mainNav = [
   { title: "Tableau de bord", url: "/", icon: LayoutDashboard },
-  { title: "Cours", url: "/courses", icon: BookOpen },
+  { title: "Menu & Plats", url: "/menu", icon: UtensilsCrossed },
+  { title: "Réservations", url: "/reservations", icon: CalendarDays },
+  { title: "Commandes", url: "/orders", icon: ClipboardList },
   { title: "Utilisateurs", url: "/users", icon: Users },
   { title: "Statistiques", url: "/analytics", icon: BarChart3 },
   { title: "Notifications", url: "/notifications", icon: Bell },
@@ -31,17 +33,17 @@ export function AppSidebar({ collapsed }: AppSidebarProps) {
       {/* Logo */}
       <div className="flex h-16 items-center gap-3 border-b border-sidebar-border px-4">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground font-bold text-sm">
-          <GraduationCap className="h-5 w-5" />
+          <ChefHat className="h-5 w-5" />
         </div>
         {!collapsed && (
-          <span className="text-lg font-bold tracking-tight text-sidebar-accent-foreground animate-fade-in">
-            EduPro
+          <span className="text-lg font-bold tracking-tight text-sidebar-accent-foreground font-display">
+            RestoManager
           </span>
         )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 px-3 py-4">
+      <nav className="flex-1 space-y-1 px-3 py-4 overflow-y-auto">
         {mainNav.map((item) => {
           const isActive = location.pathname === item.url;
           return (

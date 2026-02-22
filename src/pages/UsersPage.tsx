@@ -6,12 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 
 export default function UsersPage() {
@@ -51,7 +46,7 @@ export default function UsersPage() {
             <TableRow className="hover:bg-transparent">
               <TableHead>Utilisateur</TableHead>
               <TableHead>Rôle</TableHead>
-              <TableHead className="hidden md:table-cell">Cours</TableHead>
+              <TableHead className="hidden md:table-cell">Réservations</TableHead>
               <TableHead className="hidden md:table-cell">Statut</TableHead>
               <TableHead className="hidden lg:table-cell">Dernière activité</TableHead>
               <TableHead className="w-10" />
@@ -86,7 +81,7 @@ export default function UsersPage() {
                   </Badge>
                 </TableCell>
                 <TableCell className="hidden md:table-cell text-sm text-muted-foreground">
-                  {user.coursesEnrolled}
+                  {user.reservations}
                 </TableCell>
                 <TableCell className="hidden md:table-cell">
                   <div className="flex items-center gap-2">
@@ -113,7 +108,6 @@ export default function UsersPage() {
           </TableBody>
         </Table>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-between border-t border-border px-4 py-3">
             <p className="text-sm text-muted-foreground">

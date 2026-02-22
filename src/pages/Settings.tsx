@@ -7,17 +7,16 @@ import { Separator } from "@/components/ui/separator";
 export default function Settings() {
   return (
     <div className="max-w-2xl space-y-8 animate-fade-in">
-      {/* Profil */}
       <section className="rounded-xl bg-card p-6 shadow-card border border-border/50 space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Profil administrateur</h3>
+        <h3 className="text-lg font-semibold text-foreground font-display">Profil du restaurant</h3>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label>Nom</Label>
-            <Input defaultValue="Admin" className="bg-secondary border-none" />
+            <Label>Nom du restaurant</Label>
+            <Input defaultValue="Le Gourmet" className="bg-secondary border-none" />
           </div>
           <div className="space-y-2">
             <Label>Email</Label>
-            <Input defaultValue="admin@edupro.com" className="bg-secondary border-none" />
+            <Input defaultValue="contact@legourmet.fr" className="bg-secondary border-none" />
           </div>
         </div>
         <Button className="gradient-accent text-accent-foreground font-semibold hover:opacity-90">
@@ -27,12 +26,11 @@ export default function Settings() {
 
       <Separator />
 
-      {/* Notifications */}
       <section className="rounded-xl bg-card p-6 shadow-card border border-border/50 space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Notifications</h3>
+        <h3 className="text-lg font-semibold text-foreground font-display">Notifications</h3>
         {[
-          { label: "Notifications par email", desc: "Recevoir les alertes par email" },
-          { label: "Nouveaux utilisateurs", desc: "Notification à chaque inscription" },
+          { label: "Nouvelles réservations", desc: "Recevoir une alerte par email" },
+          { label: "Commandes en attente", desc: "Notification à chaque nouvelle commande" },
           { label: "Rapports hebdomadaires", desc: "Résumé d'activité chaque lundi" },
         ].map((item, i) => (
           <div key={i} className="flex items-center justify-between py-2">
@@ -47,9 +45,8 @@ export default function Settings() {
 
       <Separator />
 
-      {/* Sécurité */}
       <section className="rounded-xl bg-card p-6 shadow-card border border-border/50 space-y-4">
-        <h3 className="text-lg font-semibold text-foreground">Sécurité</h3>
+        <h3 className="text-lg font-semibold text-foreground font-display">Sécurité</h3>
         <div className="space-y-2">
           <Label>Mot de passe actuel</Label>
           <Input type="password" className="bg-secondary border-none" />
