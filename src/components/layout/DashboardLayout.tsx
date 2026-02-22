@@ -5,7 +5,9 @@ import { Topbar } from "./Topbar";
 
 const pageTitles: Record<string, string> = {
   "/": "Tableau de bord",
-  "/courses": "Gestion des cours",
+  "/menu": "Menu & Plats",
+  "/orders": "Commandes",
+  "/reservations": "Réservations",
   "/users": "Gestion des utilisateurs",
   "/analytics": "Statistiques",
   "/notifications": "Notifications",
@@ -17,7 +19,7 @@ export function DashboardLayout() {
   const location = useLocation();
 
   const basePath = "/" + (location.pathname.split("/")[1] || "");
-  const title = pageTitles[basePath] || "EduPro";
+  const title = pageTitles[basePath] || "RestoManager";
 
   return (
     <div className="flex min-h-screen w-full bg-background">

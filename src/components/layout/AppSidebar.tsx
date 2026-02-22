@@ -1,10 +1,13 @@
-import { LayoutDashboard, BookOpen, Users, Settings, LogOut, GraduationCap, BarChart3, Bell } from "lucide-react";
+import { LayoutDashboard, UtensilsCrossed, Users, Settings, LogOut, ChefHat, BarChart3, Bell, ClipboardList, CalendarDays } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 const mainNav = [
   { title: "Tableau de bord", url: "/", icon: LayoutDashboard },
-  { title: "Cours", url: "/courses", icon: BookOpen },
+  { title: "Menu & Plats", url: "/menu", icon: UtensilsCrossed },
+  { title: "Commandes", url: "/orders", icon: ClipboardList },
+  { title: "Réservations", url: "/reservations", icon: CalendarDays },
   { title: "Utilisateurs", url: "/users", icon: Users },
   { title: "Statistiques", url: "/analytics", icon: BarChart3 },
   { title: "Notifications", url: "/notifications", icon: Bell },
@@ -21,6 +24,7 @@ interface AppSidebarProps {
 
 export function AppSidebar({ collapsed }: AppSidebarProps) {
   const location = useLocation();
+  const { logout } = useAuth();
 
   return (
     <aside
@@ -31,19 +35,19 @@ export function AppSidebar({ collapsed }: AppSidebarProps) {
       {/* Logo */}
       <div className="flex h-16 items-center gap-3 border-b border-sidebar-border px-4">
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground font-bold text-sm">
-          <GraduationCap className="h-5 w-5" />
+          <ChefHat className="h-5 w-5" />
         </div>
         {!collapsed && (
           <span className="text-lg font-bold tracking-tight text-sidebar-accent-foreground animate-fade-in">
-            EduPro
+            RestoManager
           </span>
         )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 px-3 py-4">
+      <nav className="flex-1 space-y-1 px-3 py-4 overflow-y-auto">
         {mainNav.map((item) => {
-          const isActive = location.pathname === item.url;
+          const isActive = location.pathname === item.url || (item.url !== "/" && location.pathname.startsWith(item.url));
           return (
             <NavLink
               key={item.url}
@@ -77,10 +81,7 @@ export function AppSidebar({ collapsed }: AppSidebarProps) {
           </NavLink>
         ))}
         <button
-          onClick={() => {
-            localStorage.removeItem("edupro_user");
-            window.location.href = "/login";
-          }}
+          onClick={logout}
           className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground hover:bg-sidebar-accent hover:text-destructive transition-all"
         >
           <LogOut className="h-5 w-5 shrink-0" />
