@@ -28,7 +28,12 @@ export function Topbar({ onToggleSidebar, title }: TopbarProps) {
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/80 backdrop-blur-md px-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" onClick={onToggleSidebar} className="text-muted-foreground hover:text-foreground">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onToggleSidebar}
+          className="text-muted-foreground hover:text-foreground"
+        >
           <Menu className="h-5 w-5" />
         </Button>
         <h1 className="text-xl font-semibold text-foreground">{title}</h1>
@@ -37,13 +42,19 @@ export function Topbar({ onToggleSidebar, title }: TopbarProps) {
       <div className="flex items-center gap-3">
         <div className="relative hidden md:block">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input placeholder="Rechercher..." className="w-64 pl-9 bg-secondary border-none text-sm" />
+          <Input
+            placeholder="Rechercher..."
+            className="w-64 pl-9 bg-secondary border-none text-sm"
+          />
         </div>
+
         <ThemeToggle />
+
         <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
           <Bell className="h-5 w-5" />
           <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-accent" />
         </Button>
+
         <UserMenu />
       </div>
     </header>

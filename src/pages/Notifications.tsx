@@ -1,18 +1,17 @@
-import { UtensilsCrossed, Users, AlertCircle, CheckCircle, CalendarDays } from "lucide-react";
+import { Bell, BookOpen, Users, AlertCircle, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const notifications = [
-  { id: 1, type: "order", icon: UtensilsCrossed, title: "Nouvelle commande #1007", desc: "Commande de 3 plats reçue - Table 4", time: "Il y a 5 min", read: false },
-  { id: 2, type: "reservation", icon: CalendarDays, title: "Nouvelle réservation", desc: "Sophie Martin - 4 personnes ce soir à 19h30", time: "Il y a 15 min", read: false },
-  { id: 3, type: "alert", icon: AlertCircle, title: "Stock bas", desc: "Le Filet de Bœuf Wagyu est presque en rupture", time: "Il y a 1h", read: false },
-  { id: 4, type: "success", icon: CheckCircle, title: "Commande terminée", desc: "Commande #1001 livrée avec succès", time: "Il y a 2h", read: true },
-  { id: 5, type: "user", icon: Users, title: "Nouveau client inscrit", desc: "Hugo Faure a créé un compte", time: "Il y a 4h", read: true },
-  { id: 6, type: "order", icon: UtensilsCrossed, title: "Commande annulée", desc: "Commande #1006 annulée par le client", time: "Il y a 6h", read: true },
+  { id: 1, type: "course", icon: BookOpen, title: "Nouveau cours publié", desc: "\"React Avancé\" a été publié par Marie Dupont", time: "Il y a 2h", read: false },
+  { id: 2, type: "user", icon: Users, title: "Nouvel utilisateur inscrit", desc: "Gabrielle Simon a rejoint la plateforme", time: "Il y a 4h", read: false },
+  { id: 3, type: "alert", icon: AlertCircle, title: "Erreur de paiement", desc: "Le paiement de David Roux a échoué", time: "Il y a 6h", read: false },
+  { id: 4, type: "success", icon: CheckCircle, title: "Cours complété", desc: "Clara Petit a terminé \"UI/UX Design Fondamentaux\"", time: "Il y a 1j", read: true },
+  { id: 5, type: "user", icon: Users, title: "Nouvel utilisateur inscrit", desc: "Hugo Faure a rejoint la plateforme", time: "Il y a 2j", read: true },
+  { id: 6, type: "course", icon: BookOpen, title: "Cours mis à jour", desc: "\"Python pour la Data Science\" a été mis à jour", time: "Il y a 3j", read: true },
 ];
 
 const typeStyles: Record<string, string> = {
-  order: "bg-info/10 text-info",
-  reservation: "bg-accent/10 text-accent",
+  course: "bg-info/10 text-info",
   user: "bg-primary/10 text-primary",
   alert: "bg-destructive/10 text-destructive",
   success: "bg-success/10 text-success",

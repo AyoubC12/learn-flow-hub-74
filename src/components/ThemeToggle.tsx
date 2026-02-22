@@ -12,12 +12,14 @@ export function ThemeToggle() {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
-    localStorage.setItem("resto_theme", dark ? "dark" : "light");
+    localStorage.setItem("edupro_theme", dark ? "dark" : "light");
   }, [dark]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("resto_theme");
-    if (saved === "dark") setDark(true);
+    const saved = localStorage.getItem("edupro_theme");
+    if (saved === "dark") {
+      setDark(true);
+    }
   }, []);
 
   return (

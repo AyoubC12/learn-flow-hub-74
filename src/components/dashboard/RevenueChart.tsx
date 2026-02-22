@@ -10,7 +10,7 @@ export function RevenueChart() {
           <p className="text-sm text-muted-foreground">6 derniers mois</p>
         </div>
         <div className="text-right">
-          <p className="text-2xl font-bold text-foreground">154 600 €</p>
+          <p className="text-2xl font-bold text-foreground">39 600 €</p>
           <p className="text-sm font-medium text-success">+23.5%</p>
         </div>
       </div>
@@ -26,7 +26,12 @@ export function RevenueChart() {
           <XAxis dataKey="month" stroke="hsl(215 16% 47%)" fontSize={12} />
           <YAxis stroke="hsl(215 16% 47%)" fontSize={12} tickFormatter={(v) => `${v}€`} />
           <Tooltip
-            contentStyle={{ backgroundColor: "hsl(0 0% 100%)", border: "1px solid hsl(214 32% 91%)", borderRadius: "8px", fontSize: "13px" }}
+            contentStyle={{
+              backgroundColor: "hsl(0 0% 100%)",
+              border: "1px solid hsl(214 32% 91%)",
+              borderRadius: "8px",
+              fontSize: "13px",
+            }}
             formatter={(value: number) => [`${value} €`, "Revenus"]}
           />
           <Area type="monotone" dataKey="revenue" stroke="hsl(38 92% 50%)" strokeWidth={2.5} fill="url(#revenueGradient)" />
