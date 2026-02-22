@@ -6,8 +6,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import Dashboard from "@/pages/Dashboard";
-import Courses from "@/pages/Courses";
-import CourseDetail from "@/pages/CourseDetail";
+import MenuPage from "@/pages/Courses";
+import DishDetail from "@/pages/CourseDetail";
+import OrdersPage from "@/pages/Orders";
+import ReservationsPage from "@/pages/Reservations";
 import UsersPage from "@/pages/UsersPage";
 import Analytics from "@/pages/Analytics";
 import Notifications from "@/pages/Notifications";
@@ -33,8 +35,10 @@ function AppRoutes() {
       <Route path="/signup" element={user ? <Navigate to="/" replace /> : <Signup />} />
       <Route element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/courses/:id" element={<CourseDetail />} />
+        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/menu/:id" element={<DishDetail />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/reservations" element={<ReservationsPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/notifications" element={<Notifications />} />

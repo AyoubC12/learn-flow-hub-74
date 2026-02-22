@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 export interface AuthUser {
   id: number;
@@ -20,12 +21,12 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(() => {
-    const stored = localStorage.getItem("edupro_user");
+    const stored = localStorage.getItem("resto_user");
     return stored ? JSON.parse(stored) : null;
   });
+  const navigate = useNavigate();
 
   const login = (email: string, _password: string): boolean => {
-    // Mock login — accepts any email with password "password"
     const mockUser: AuthUser = {
       id: Date.now(),
       name: email.split("@")[0],
@@ -34,7 +35,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       avatar: email.substring(0, 2).toUpperCase(),
     };
     setUser(mockUser);
-    localStorage.setItem("edupro_user", JSON.stringify(mockUser));
+    localStorage.setItem("resto_user", JSON.stringify(mockUser));
     return true;
   };
 
@@ -47,13 +48,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       avatar: name.substring(0, 2).toUpperCase(),
     };
     setUser(newUser);
-    localStorage.setItem("edupro_user", JSON.stringify(newUser));
+    localStorage.setItem("resto_user", JSON.stringify(newUser));
     return true;
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("edupro_user");
+    localStorage.removeItem("resto_user");
+    navigate("/login");
   };
 
   return (
